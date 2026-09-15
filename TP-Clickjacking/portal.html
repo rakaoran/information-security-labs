@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family:
+        system-ui,
+        -apple-system,
+        sans-serif;
+      font-size: 1.15rem; /* Scales base text up */
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Wrapper divs for each field */
+    body > div {
+      width: 100%;
+      max-width: 320px; /* Keeps inputs from stretching infinitely */
+      margin-bottom: 1.25rem;
+    }
+
+    /* Field labels */
+    p {
+      margin: 0 0 0.5rem 0;
+      font-weight: 500;
+    }
+
+    /* Inputs & Submit Button */
+    input,
+    button {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      box-sizing: border-box; /* Ensures padding doesn't break width */
+    }
+
+    input {
+      border: 1px solid #ccc;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #0070f3;
+    }
+
+    button {
+      max-width: 320px;
+      background-color: #0070f3;
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    button:hover {
+      background-color: #005bb5;
+    }
+  </style>
+
+  <body>
+    <h2>Student Portal</h2>
+    <div>
+      <p>Student Name</p>
+      <input id="student-name" />
+    </div>
+    <div>
+      <p>Password</p>
+      <input id="student-password" />
+    </div>
+    <button id="login-btn" type="button" style="margin-top: 10px">Login</button>
+  </body>
+
+  <script defer>
+    const loginBtn = document.getElementById("login-btn");
+    const nameInput = document.getElementById("student-name");
+    const passInput = document.getElementById("student-password");
+    loginBtn.addEventListener("click", () => {
+      const username = nameInput.value.trim();
+      const password = passInput.value;
+
+      if (!username || !password) {
+        alert("Please fill in both fields");
+        return;
+      }
+      console.log("Submitting payload:", { username, password });
+      alert(
+        "You are logged in with credentials: " + username + ", " + password,
+      );
+    });
+  </script>
+</html>

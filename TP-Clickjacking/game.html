@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Catch Me!</title>
+    <style>
+      #catchButton {
+        position: absolute;
+        top: 150px;
+        left: 200px;
+      }
+      iframe {
+        position: absolute;
+        opacity: 0.05;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe src="portal.html" id="iframe"></iframe>
+    <h1>Catch Me!</h1>
+    <p>Score: <span id="score">0</span></p>
+    <button id="catchButton">Catch Me</button>
+  </body>
+  <script defer>
+    let iframe = document.querySelector("#iframe");
+    iframe.addEventListener("load", () => {
+      let catchButton = document.getElementById("catchButton");
+      let score = document.getElementById("score");
+
+      let login = iframe.contentDocument.querySelector("#login-btn");
+      const loginRect = login.getBoundingClientRect();
+      const iframeRect = iframe.getBoundingClientRect();
+      const x = iframeRect.left + loginRect.left;
+      const y = iframeRect.top + loginRect.top;
+
+      console.log(x, y);
+      catchButton.addEventListener("click", () => {
+        score.textContent++;
+
+        if (score.textContent == 3) {
+          catchButton.style.left = x + "px";
+          catchButton.style.top = y + "px";
+          catchButton.style.pointerEvents = "none";
+        } else {
+          catchButton.style.left = Math.random() * 800 + "px";
+          catchButton.style.top = Math.random() * 500 + "px";
+        }
+      });
+    });
+  </script>
+</html>
