@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Tracker-One Profiles</title></head>
+<body>
+<h1>Tracker-One — Reconstructed Profiles (chronological)</h1>
+<p><a href="/clear">Clear log</a></p>
+<h2>All visits in order</h2>
+<table border="1" cellpadding="5">
+<tr><th>#</th><th>Time</th><th>tid</th><th>Publisher</th><th>Page</th><th>Referer</th></tr>
+{% for v in visits %}
+<tr><td>{{ loop.index }}</td><td>{{ v.time }}</td><td>{{ v.tid }}</td><td>{{ v.publisher }}</td><td>{{ v.page }}</td><td>{{ v.referer }}</td></tr>
+{% endfor %}
+</table>
+<h2>Profiles grouped by identifier</h2>
+{% for tid, lst in grouped.items() %}
+<h3>Profile {{ tid }} ({{ lst|length }} visits)</h3>
+<ol>
+{% for v in lst %}
+<li>{{ v.time }} — {{ v.publisher }}/{{ v.page }}</li>
+{% endfor %}
+</ol>
+{% endfor %}
+</body></html>
