@@ -1,0 +1,17 @@
+{
+  "imports": {
+    "express": "npm:express@5.1.0",
+    "@types/express": "npm:@types/express@5.0.3"
+  },
+  "tasks": {
+    "dev": "deno run --allow-net --allow-read --allow-env --watch=src/,public/ src/server.ts",
+    "start": "deno run --allow-net --allow-read --allow-env src/server.ts",
+    "check": "deno check src/server.ts public/fingerprint.ts",
+    "fmt": "deno fmt --check"
+  },
+  "fmt": {
+    "lineWidth": 90,
+    "semiColons": true,
+    "singleQuote": false
+  }
+}

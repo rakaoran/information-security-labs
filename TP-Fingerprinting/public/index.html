@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
+    <title>TP Fingerprinting</title>
+    <link rel="stylesheet" href="/assets/styles.css" />
+  </head>
+  <body>
+    <main>
+      <header class="page-header">
+        <p class="eyebrow">Information Security · TP 3</p>
+        <h1>Browser fingerprinting, but local</h1>
+        <p>
+          A tiny demo of what a page can learn without cookies. Open the server
+          terminal too, because half of the interesting stuff is printed there.
+        </p>
+      </header>
+
+      <section>
+        <div class="section-title">
+          <span>01</span>
+          <h2>Active browser clues</h2>
+        </div>
+        <p class="muted">
+          These values come from normal browser APIs. No permission popup is needed.
+        </p>
+        <dl id="feature-output" class="feature-grid" aria-live="polite">
+          <div>
+            <dt>Status</dt>
+            <dd>Collecting…</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <span>02</span>
+          <h2>Alice's typing rhythm</h2>
+        </div>
+        <p>Type this exact sentence:</p>
+        <blockquote
+          id="target-sentence">Cookies are gone, but Alice’s rhythm still leaves traces!</blockquote>
+        <label for="typing-input">Your attempt</label>
+        <input
+          id="typing-input"
+          type="text"
+          autocomplete="off"
+          spellcheck="false"
+          placeholder="Start typing here…"
+        />
+        <div class="actions">
+          <button id="reset-button" type="button">Reset attempt</button>
+          <span id="typing-status" class="muted">Timer has not started.</span>
+        </div>
+        <dl id="typing-results" class="result-grid" aria-live="polite">
+          <div>
+            <dt>Total time</dt>
+            <dd id="typing-time">—</dd>
+          </div>
+          <div>
+            <dt>Speed</dt>
+            <dd id="typing-speed">—</dd>
+          </div>
+          <div>
+            <dt>Corrections</dt>
+            <dd id="typing-corrections">—</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section>
+        <div class="section-title">
+          <span>03</span>
+          <h2>One identifier</h2>
+        </div>
+        <p class="muted">
+          The stable browser clues above are joined in a fixed order, then hashed with SHA-256.
+          The typing result is intentionally excluded.
+        </p>
+        <output id="fingerprint-hash" class="hash">Generating…</output>
+      </section>
+
+      <footer>This stays local. Please do not use it on people who did not agree to the test.</footer>
+    </main>
+    <script type="module" src="/assets/fingerprint.js"></script>
+  </body>
+</html>
